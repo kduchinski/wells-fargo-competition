@@ -117,57 +117,50 @@ wordcloud(<span class="pl-v">words</span> <span class="pl-k">=</span> names(<spa
 library(<span class="pl-smi">ggplot2</span>)
 ggplot(<span class="pl-smi">df</span>, aes(<span class="pl-v">x</span><span class="pl-k">=</span><span class="pl-smi">term</span>, <span class="pl-v">y</span><span class="pl-k">=</span><span class="pl-smi">freq</span>)) <span class="pl-k">+</span> geom_bar(<span class="pl-v">stat</span> <span class="pl-k">=</span> <span class="pl-s"><span class="pl-pds">"</span>identity<span class="pl-pds">"</span></span>) <span class="pl-k">+</span> xlab(<span class="pl-s"><span class="pl-pds">"</span>Terms<span class="pl-pds">"</span></span>) <span class="pl-k">+</span> ylab(<span class="pl-s"><span class="pl-pds">"</span>Count<span class="pl-pds">"</span></span>) <span class="pl-k">+</span> coord_flip()</pre></div>
 
-<p>`R</p>
+<p>Our sentiment analysis involves the custom function score.sentiment, which can be found at the bottom of this webpage.</p>
 
-<h1>
-<a id="to-generate-a-sentiment-analysis-box-plot-from-a-dataframe-df-containing-consumer-comments-under-the-column-fulltext" class="anchor" href="#to-generate-a-sentiment-analysis-box-plot-from-a-dataframe-df-containing-consumer-comments-under-the-column-fulltext" aria-hidden="true"><span class="octicon octicon-link"></span></a>To generate a sentiment analysis box plot from a dataframe "df" containing consumer comments under the column "FullText"</h1>
+<div class="highlight highlight-source-r"><pre><span class="pl-c">#To generate a sentiment analysis box plot from a dataframe "df" containing consumer comments under the column "FullText"</span>
+<span class="pl-v">scores</span> <span class="pl-k">=</span> score.sentiment(<span class="pl-smi">df</span><span class="pl-k">$</span><span class="pl-smi">FullText</span>, <span class="pl-smi">pos</span>, <span class="pl-smi">neg</span>, <span class="pl-v">.progress</span><span class="pl-k">=</span><span class="pl-s"><span class="pl-pds">'</span>text<span class="pl-pds">'</span></span>)
+<span class="pl-smi">scores</span><span class="pl-k">$</span><span class="pl-v">very.pos</span> <span class="pl-k">=</span> as.numeric(<span class="pl-smi">scores</span><span class="pl-k">$</span><span class="pl-smi">score</span> <span class="pl-k">&gt;</span><span class="pl-k">=</span> <span class="pl-c1">2</span>)
+<span class="pl-smi">scores</span><span class="pl-k">$</span><span class="pl-v">very.neg</span> <span class="pl-k">=</span> as.numeric(<span class="pl-smi">scores</span><span class="pl-k">$</span><span class="pl-smi">score</span> <span class="pl-k">&lt;</span><span class="pl-k">=</span> <span class="pl-k">-</span><span class="pl-c1">2</span>)
+library(<span class="pl-smi">ggplot2</span>)
+ggplot(<span class="pl-smi">scores</span>, aes(<span class="pl-v">x</span><span class="pl-k">=</span><span class="pl-smi">mediatype</span>, <span class="pl-v">y</span><span class="pl-k">=</span><span class="pl-smi">score</span>, <span class="pl-v">group</span><span class="pl-k">=</span><span class="pl-smi">mediatype</span>)) <span class="pl-k">+</span>
+  geom_boxplot(aes(<span class="pl-v">fill</span><span class="pl-k">=</span><span class="pl-smi">mediatype</span>)) <span class="pl-k">+</span>
+  scale_fill_manual(<span class="pl-v">values</span><span class="pl-k">=</span><span class="pl-smi">cols</span>) <span class="pl-k">+</span>
+  geom_jitter(<span class="pl-v">colour</span><span class="pl-k">=</span><span class="pl-s"><span class="pl-pds">"</span>gray40<span class="pl-pds">"</span></span>,<span class="pl-v">position</span><span class="pl-k">=</span>position_jitter(<span class="pl-v">width</span><span class="pl-k">=</span><span class="pl-c1">0.2</span>), <span class="pl-v">alpha</span><span class="pl-k">=</span><span class="pl-c1">0.3</span>) <span class="pl-k">+</span>
+  labs(<span class="pl-v">title</span> <span class="pl-k">=</span> <span class="pl-s"><span class="pl-pds">"</span>Media Type's Sentiment Scores<span class="pl-pds">"</span></span>) <span class="pl-k">+</span> 
+  xlab(<span class="pl-s"><span class="pl-pds">'</span>Media Type<span class="pl-pds">'</span></span>) <span class="pl-k">+</span> ylab(<span class="pl-s"><span class="pl-pds">'</span>Sentiment Score<span class="pl-pds">'</span></span>)</pre></div>
 
-<p>scores = score.sentiment(df$FullText, pos, neg, .progress='text') #Custom function
-scores$very.pos = as.numeric(scores$score &gt;= 2)
-scores$very.neg = as.numeric(scores$score &lt;= -2)
-library(ggplot2)
-ggplot(scores, aes(x=mediatype, y=score, group=mediatype)) +
-  geom_boxplot(aes(fill=mediatype)) +
-  scale_fill_manual(values=cols) +
-  geom_jitter(colour="gray40",position=position_jitter(width=0.2), alpha=0.3) +
-  labs(title = "Media Type's Sentiment Scores") + 
-  xlab('Media Type') + ylab('Sentiment Score')
-<code>
-</code>R
-score.sentiment = function(sentences, pos.words, neg.words, .progress='none')
+<div class="highlight highlight-source-r"><pre><span class="pl-v">score.sentiment</span> <span class="pl-k">=</span> <span class="pl-k">function</span>(<span class="pl-smi">sentences</span>, <span class="pl-smi">pos.words</span>, <span class="pl-smi">neg.words</span>, <span class="pl-v">.progress</span><span class="pl-k">=</span><span class="pl-s"><span class="pl-pds">'</span>none<span class="pl-pds">'</span></span>)
 {
-  require(plyr)
-  require(stringr)</p>
+  require(<span class="pl-smi">plyr</span>)
+  require(<span class="pl-smi">stringr</span>)
 
-<p>scores = laply(sentences, function(sentence, pos.words, neg.words) {</p>
+  <span class="pl-v">scores</span> <span class="pl-k">=</span> laply(<span class="pl-smi">sentences</span>, <span class="pl-k">function</span>(<span class="pl-smi">sentence</span>, <span class="pl-smi">pos.words</span>, <span class="pl-smi">neg.words</span>) 
+  {
 
-<pre><code># split into words. str_split is in the stringr package
-word.list = str_split(sentence, '\\s+')
-# sometimes a list() is one level of hierarchy too much
-words = unlist(word.list)
+    <span class="pl-c"># split into words. str_split is in the stringr package</span>
+    <span class="pl-v">word.list</span> <span class="pl-k">=</span> str_split(<span class="pl-smi">sentence</span>, <span class="pl-s"><span class="pl-pds">'</span><span class="pl-cce">\\</span>s+<span class="pl-pds">'</span></span>)
+    <span class="pl-c"># sometimes a list() is one level of hierarchy too much</span>
+    <span class="pl-v">words</span> <span class="pl-k">=</span> unlist(<span class="pl-smi">word.list</span>)
 
-# compare our words to the dictionaries of positive &amp; negative terms
-pos.matches = match(words, pos.words)
-neg.matches = match(words, neg.words)
+    <span class="pl-c"># compare our words to the dictionaries of positive &amp; negative terms</span>
+    <span class="pl-v">pos.matches</span> <span class="pl-k">=</span> match(<span class="pl-smi">words</span>, <span class="pl-smi">pos.words</span>)
+    <span class="pl-v">neg.matches</span> <span class="pl-k">=</span> match(<span class="pl-smi">words</span>, <span class="pl-smi">neg.words</span>)
 
-# match() returns the position of the matched term or NA
-# we just want a TRUE/FALSE:
-pos.matches = !is.na(pos.matches)
-neg.matches = !is.na(neg.matches)
+    <span class="pl-c"># match() returns the position of the matched term or NA</span>
+    <span class="pl-c"># we just want a TRUE/FALSE:</span>
+    <span class="pl-v">pos.matches</span> <span class="pl-k">=</span> <span class="pl-k">!</span>is.na(<span class="pl-smi">pos.matches</span>)
+    <span class="pl-v">neg.matches</span> <span class="pl-k">=</span> <span class="pl-k">!</span>is.na(<span class="pl-smi">neg.matches</span>)
 
-# and conveniently enough, TRUE/FALSE will be treated as 1/0 by sum():
-score = sum(pos.matches) - sum(neg.matches)
+    <span class="pl-c"># and conveniently enough, TRUE/FALSE will be treated as 1/0 by sum():</span>
+    <span class="pl-v">score</span> <span class="pl-k">=</span> sum(<span class="pl-smi">pos.matches</span>) <span class="pl-k">-</span> sum(<span class="pl-smi">neg.matches</span>)
 
-return(score)
-</code></pre>
-
-<p>}, pos.words, neg.words, .progress=.progress )</p>
-
-<p>scores.df = data.frame(score=scores, text=sentences)
-  return(scores.df)
-}</p>
-
-<p>`</p>
+    <span class="pl-k">return</span>(<span class="pl-smi">score</span>)
+  }
+  <span class="pl-v">scores.df</span> <span class="pl-k">=</span> <span class="pl-k">data.frame</span>(<span class="pl-v">score</span><span class="pl-k">=</span><span class="pl-smi">scores</span>, <span class="pl-v">text</span><span class="pl-k">=</span><span class="pl-smi">sentences</span>)
+  <span class="pl-k">return</span>(<span class="pl-smi">scores.df</span>)
+}</pre></div>
 
 <h1>
 <a id="are-the-topics-and-substance-consistent-across-the-industry-or-are-they-isolated-to-individual-banks" class="anchor" href="#are-the-topics-and-substance-consistent-across-the-industry-or-are-they-isolated-to-individual-banks" aria-hidden="true"><span class="octicon octicon-link"></span></a>Are the topics and “substance” consistent across the industry or are they isolated to individual banks?</h1>
@@ -201,21 +194,55 @@ discuss sentiment scores for each bank vs. industry</p>
 
 <p>sa (scores)</p>
 
+<h1>
+<a id="custom-functions" class="anchor" href="#custom-functions" aria-hidden="true"><span class="octicon octicon-link"></span></a>Custom Functions</h1>
+
 <h3>
-<a id="authors-and-contributors" class="anchor" href="#authors-and-contributors" aria-hidden="true"><span class="octicon octicon-link"></span></a>Authors and Contributors</h3>
+<a id="stemcompletion_mod" class="anchor" href="#stemcompletion_mod" aria-hidden="true"><span class="octicon octicon-link"></span></a>stemCompletion_mod</h3>
+
+<div class="highlight highlight-source-r"><pre><span class="pl-en">stemCompletion_mod</span> <span class="pl-k">&lt;-</span> <span class="pl-k">function</span>(<span class="pl-smi">x</span>,<span class="pl-v">dict</span><span class="pl-k">=</span><span class="pl-smi">dictCorpus</span>) 
+{
+  paste(stemCompletion(unlist(strsplit(as.character(<span class="pl-smi">x</span>),<span class="pl-s"><span class="pl-pds">"</span> <span class="pl-pds">"</span></span>)),<span class="pl-smi">dict</span>, <span class="pl-v">type</span><span class="pl-k">=</span><span class="pl-s"><span class="pl-pds">"</span>longest<span class="pl-pds">"</span></span>),<span class="pl-v">sep</span><span class="pl-k">=</span><span class="pl-s"><span class="pl-pds">"</span> <span class="pl-pds">"</span></span>,<span class="pl-v">collapse</span><span class="pl-k">=</span><span class="pl-s"><span class="pl-pds">"</span> <span class="pl-pds">"</span></span>)
+}</pre></div>
+
+<h3>
+<a id="scoresentiment" class="anchor" href="#scoresentiment" aria-hidden="true"><span class="octicon octicon-link"></span></a>score.sentiment</h3>
+
+<div class="highlight highlight-source-r"><pre><span class="pl-v">score.sentiment</span> <span class="pl-k">=</span> <span class="pl-k">function</span>(<span class="pl-smi">sentences</span>, <span class="pl-smi">pos.words</span>, <span class="pl-smi">neg.words</span>, <span class="pl-v">.progress</span><span class="pl-k">=</span><span class="pl-s"><span class="pl-pds">'</span>none<span class="pl-pds">'</span></span>)
+{
+  require(<span class="pl-smi">plyr</span>)
+  require(<span class="pl-smi">stringr</span>)
+
+  <span class="pl-v">scores</span> <span class="pl-k">=</span> laply(<span class="pl-smi">sentences</span>, <span class="pl-k">function</span>(<span class="pl-smi">sentence</span>, <span class="pl-smi">pos.words</span>, <span class="pl-smi">neg.words</span>)
+  {
+    <span class="pl-v">word.list</span> <span class="pl-k">=</span> str_split(<span class="pl-smi">sentence</span>, <span class="pl-s"><span class="pl-pds">'</span><span class="pl-cce">\\</span>s+<span class="pl-pds">'</span></span>) <span class="pl-c">#splits sentences for analysis into individual words</span>
+    <span class="pl-v">words</span> <span class="pl-k">=</span> unlist(<span class="pl-smi">word.list</span>)
+
+    <span class="pl-c"># compare our words to the dictionaries of positive &amp; negative terms</span>
+    <span class="pl-v">pos.matches</span> <span class="pl-k">=</span> match(<span class="pl-smi">words</span>, <span class="pl-smi">pos.words</span>)
+    <span class="pl-v">neg.matches</span> <span class="pl-k">=</span> match(<span class="pl-smi">words</span>, <span class="pl-smi">neg.words</span>)
+    <span class="pl-v">pos.matches</span> <span class="pl-k">=</span> <span class="pl-k">!</span>is.na(<span class="pl-smi">pos.matches</span>)
+    <span class="pl-v">neg.matches</span> <span class="pl-k">=</span> <span class="pl-k">!</span>is.na(<span class="pl-smi">neg.matches</span>)
+
+    <span class="pl-v">score</span> <span class="pl-k">=</span> sum(<span class="pl-smi">pos.matches</span>) <span class="pl-k">-</span> sum(<span class="pl-smi">neg.matches</span>)
+    <span class="pl-k">return</span>(<span class="pl-smi">score</span>)
+  }
+
+  <span class="pl-v">scores.df</span> <span class="pl-k">=</span> <span class="pl-k">data.frame</span>(<span class="pl-v">score</span><span class="pl-k">=</span><span class="pl-smi">scores</span>, <span class="pl-v">text</span><span class="pl-k">=</span><span class="pl-smi">sentences</span>)
+  <span class="pl-k">return</span>(<span class="pl-smi">scores.df</span>)
+}</pre></div>
+
+<h2>
+<a id="authors-and-contributors" class="anchor" href="#authors-and-contributors" aria-hidden="true"><span class="octicon octicon-link"></span></a>Authors and Contributors</h2>
 
 <p>description of collaboration
-*<a href="https://github.com/nashkenziem" class="user-mention">@nashkenziem</a>
-*<a href="https://github.com/emilyberich" class="user-mention">@emilyberich</a></p>
+\<a href="https://github.com/nashkenziem" class="user-mention">@nashkenziem</a>
+\<a href="https://github.com/emilyberich" class="user-mention">@emilyberich</a></p>
 
 <h3>
 <a id="support-or-contact" class="anchor" href="#support-or-contact" aria-hidden="true"><span class="octicon octicon-link"></span></a>Support or Contact</h3>
 
 <p>Having trouble with Pages? Check out our <a href="https://help.github.com/pages">documentation</a> or <a href="https://github.com/contact">contact support</a> and we’ll help you sort it out.</p>
-
-<p>*To put in code</p>
-
-<div class="highlight highlight-source-r"><pre><span class="pl-c">#example code</span></pre></div>
 
       <footer class="site-footer">
         <span class="site-footer-owner"><a href="https://github.com/kduchinski/wells-fargo-competition">Wells Fargo 2015 Campus Analytics Challenge</a> is maintained by <a href="https://github.com/kduchinski">kduchinski</a>.</span>
