@@ -22,8 +22,8 @@
       <h1>
 <a id="introduction" class="anchor" href="#introduction" aria-hidden="true"><span class="octicon octicon-link"></span></a>Introduction</h1>
 
-<p>description of the goals of this project and what we did to accomplish them
-thank wells fargo and mindsumo
+<p>description of the goals of this project and what we did to accomplish them 
+thank wells fargo and mindsumo<br>
 flow diagram</p>
 
 <h1>
@@ -32,7 +32,10 @@ flow diagram</p>
 <h2>
 <a id="approach" class="anchor" href="#approach" aria-hidden="true"><span class="octicon octicon-link"></span></a>Approach</h2>
 
-<p>describe approach to this question in more detail</p>
+<p>describe approach to this question in more detail  </p>
+
+<div class="highlight highlight-source-r"><pre><span class="pl-c">#To isolate posts mentioning Bank A  </span>
+<span class="pl-v">bankA.idx</span> <span class="pl-k">=</span> which(sapply(<span class="pl-smi">df</span><span class="pl-k">$</span><span class="pl-smi">FullText</span>,<span class="pl-k">function</span>(<span class="pl-smi">x</span>) grepl(<span class="pl-s"><span class="pl-pds">"</span>BankA<span class="pl-pds">"</span></span>,<span class="pl-smi">x</span>)))</pre></div>
 
 <h2>
 <a id="bank-a" class="anchor" href="#bank-a" aria-hidden="true"><span class="octicon octicon-link"></span></a>Bank A</h2>
@@ -49,32 +52,54 @@ flow diagram</p>
 </table>
 
 <p>identify 3 key terms
-sentiment analysis of 3 key terms
-wordcloud of "good"
+sentiment analysis of 3 key terms<br>
+wordcloud of "good"<br>
 analysis of results</p>
 
 <h2>
 <a id="bank-b" class="anchor" href="#bank-b" aria-hidden="true"><span class="octicon octicon-link"></span></a>Bank B</h2>
 
-<p><img src="http://i.imgur.com/Cxxvipl.png?1" alt="Bank B Wordcloud">
-<img src="http://i.imgur.com/wzbM4NO.png?1" alt="Bank B Term-Frequency Plot">  </p>
+<table>
+<thead>
+<tr>
+<th><img src="http://i.imgur.com/Cxxvipl.png?1" alt="Bank B Wordcloud"></th>
+<th><img src="http://i.imgur.com/wzbM4NO.png?1" alt="Bank B Term-Frequency Plot"></th>
+</tr>
+</thead>
+<tbody>
+</tbody>
+</table>
 
 <h2>
 <a id="bank-c" class="anchor" href="#bank-c" aria-hidden="true"><span class="octicon octicon-link"></span></a>Bank C</h2>
 
-<p><img src="http://i.imgur.com/zXFuQbG.png?2" alt="Bank C Wordcloud">
-<img src="http://i.imgur.com/6yS4Kr4.png?1" alt="Bank C Term-Frequency Plot">  </p>
+<table>
+<thead>
+<tr>
+<th><img src="http://i.imgur.com/zXFuQbG.png?2" alt="Bank C Wordcloud"></th>
+<th><img src="http://i.imgur.com/6yS4Kr4.png?1" alt="Bank C Term-Frequency Plot"></th>
+</tr>
+</thead>
+<tbody>
+</tbody>
+</table>
 
 <h2>
 <a id="bank-d" class="anchor" href="#bank-d" aria-hidden="true"><span class="octicon octicon-link"></span></a>Bank D</h2>
 
-<p><img src="http://i.imgur.com/LHnTSiS.png?1" alt="Bank D Wordcloud">
-<img src="http://i.imgur.com/v3Qmsyk.png?1" alt="Bank D Term-Frequency Plot">  </p>
+<table>
+<thead>
+<tr>
+<th><img src="http://i.imgur.com/LHnTSiS.png?1" alt="Bank D Wordcloud"></th>
+<th><img src="http://i.imgur.com/v3Qmsyk.png?1" alt="Bank D Term-Frequency Plot"></th>
+</tr>
+</thead>
+<tbody>
+</tbody>
+</table>
 
 <h2>
 <a id="methods" class="anchor" href="#methods" aria-hidden="true"><span class="octicon octicon-link"></span></a>Methods</h2>
-
-<p>code for splitting df into banks, code for wc, tf plot, sa</p>
 
 <h1>
 <a id="are-the-topics-and-substance-consistent-across-the-industry-or-are-they-isolated-to-individual-banks" class="anchor" href="#are-the-topics-and-substance-consistent-across-the-industry-or-are-they-isolated-to-individual-banks" aria-hidden="true"><span class="octicon octicon-link"></span></a>Are the topics and “substance” consistent across the industry or are they isolated to individual banks?</h1>
