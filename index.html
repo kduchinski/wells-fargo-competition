@@ -36,7 +36,9 @@ flow diagram</p>
 social media. But are users praising these aspects of banking or criticizing them? Sentiment analysis determines if a given word is positive or negative. We treated the social media posts about each banking topic as a list of words in order to see if the social conversation around different aspects of banking is positive or negative overall.</p>
 
 <div class="highlight highlight-source-r"><pre><span class="pl-c">#To isolate posts mentioning BankA </span>
-<span class="pl-v">bankA.idx</span> <span class="pl-k">=</span> which(sapply(<span class="pl-smi">df</span><span class="pl-k">$</span><span class="pl-smi">FullText</span>,<span class="pl-k">function</span>(<span class="pl-smi">x</span>) grepl(<span class="pl-s"><span class="pl-pds">"</span>BankA<span class="pl-pds">"</span></span>,<span class="pl-smi">x</span>)))</pre></div>
+<span class="pl-v">bankA.idx</span> <span class="pl-k">=</span> which(sapply(<span class="pl-smi">df</span><span class="pl-k">$</span><span class="pl-smi">FullText</span>,<span class="pl-k">function</span>(<span class="pl-smi">x</span>) grepl(<span class="pl-s"><span class="pl-pds">"</span>BankA<span class="pl-pds">"</span></span>,<span class="pl-smi">x</span>)))
+<span class="pl-c">#To isolate posts mentioning service</span>
+<span class="pl-v">service.idx</span> <span class="pl-k">=</span> which(sapply(<span class="pl-smi">df</span><span class="pl-k">$</span><span class="pl-smi">FullText</span>,<span class="pl-k">function</span>(<span class="pl-smi">x</span>) grep1(<span class="pl-s"><span class="pl-pds">"</span>service<span class="pl-pds">"</span></span>,<span class="pl-smi">x</span>)))</pre></div>
 
 <h2>
 <a id="bank-a" class="anchor" href="#bank-a" aria-hidden="true"><span class="octicon octicon-link"></span></a>Bank A</h2>
@@ -52,7 +54,10 @@ social media. But are users praising these aspects of banking or criticizing the
 </tbody>
 </table>
 
-<p>identify 3 key terms: service, deposit, loan  </p>
+<p>These graphs depict the most frequently-used words in tweets and Facebook posts about BankA. All of the words in the word cloud appear at least 700 times, and all of the words in the term-frequency plot appear at least 1000 times. identify 3 key terms: service, deposit, loan  </p>
+
+<p>Social media users often compare BankA to BankB, so BankB may be BankA's biggest competitor. They also compare it
+to BankD to a lesser extent. The words "great" and "good" appear much more frequently than "hate" or profanities, which suggests that there may be more positive posts than negative posts concerning BankA. Some interesting topics that appear in the word cloud are <strong>service</strong>, <strong>deposit</strong>, and <strong>card</strong>.  </p>
 
 <p>sentiment analysis of 3 key terms<br>
 wordcloud of "good" + "great" and "fuck" + "hate"<br>
