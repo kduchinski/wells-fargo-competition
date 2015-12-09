@@ -32,9 +32,10 @@ flow diagram</p>
 <h2>
 <a id="approach" class="anchor" href="#approach" aria-hidden="true"><span class="octicon octicon-link"></span></a>Approach</h2>
 
-<p>describe approach to this question in more detail  </p>
+<p>Word clouds, clusters of related words, allow us to visually represent words that occur frequently. Thus, they can reveal what consumers talk about on social media. We split the data into collections of posts related to each bank respectively and removed common words like prepositions, URLs, and the name of the bank in question. We then determined the most frequently used words and spell-checked them before making a word cloud. Term-frequency plots, bar graphs of how often each word appears in the Facebook and Twitter posts, represent the same information but in a quantitative manner. From these graphs we derived popular banking topics on
+social media. But are users praising these aspects of banking or criticizing them? Sentiment analysis determines if a given word is positive or negative. We treated the social media posts about each banking topic as a list of words in order to see if the social conversation around different aspects of banking is positive or negative overall.</p>
 
-<div class="highlight highlight-source-r"><pre><span class="pl-c">#To isolate posts mentioning Bank A  </span>
+<div class="highlight highlight-source-r"><pre><span class="pl-c">#To isolate posts mentioning BankA </span>
 <span class="pl-v">bankA.idx</span> <span class="pl-k">=</span> which(sapply(<span class="pl-smi">df</span><span class="pl-k">$</span><span class="pl-smi">FullText</span>,<span class="pl-k">function</span>(<span class="pl-smi">x</span>) grepl(<span class="pl-s"><span class="pl-pds">"</span>BankA<span class="pl-pds">"</span></span>,<span class="pl-smi">x</span>)))</pre></div>
 
 <h2>
@@ -51,7 +52,7 @@ flow diagram</p>
 </tbody>
 </table>
 
-<p>identify 3 key terms: service, center, loan?  </p>
+<p>identify 3 key terms: service, deposit, loan  </p>
 
 <p>sentiment analysis of 3 key terms<br>
 wordcloud of "good" + "great" and "fuck" + "hate"<br>
@@ -71,6 +72,8 @@ analysis of results</p>
 </tbody>
 </table>
 
+<p>3 key terms: check, card, deposit</p>
+
 <h2>
 <a id="bank-c" class="anchor" href="#bank-c" aria-hidden="true"><span class="octicon octicon-link"></span></a>Bank C</h2>
 
@@ -84,6 +87,8 @@ analysis of results</p>
 <tbody>
 </tbody>
 </table>
+
+<p>3 key terms: card, credit, rate</p>
 
 <h2>
 <a id="bank-d" class="anchor" href="#bank-d" aria-hidden="true"><span class="octicon octicon-link"></span></a>Bank D</h2>
@@ -99,10 +104,12 @@ analysis of results</p>
 </tbody>
 </table>
 
+<p>3 key terms: program, manage, service</p>
+
 <h2>
 <a id="methods" class="anchor" href="#methods" aria-hidden="true"><span class="octicon octicon-link"></span></a>Methods</h2>
 
-<div class="highlight highlight-source-r"><pre><span class="pl-c">#To generate a wordcloud from a term-document matrix "tdm"</span>
+<div class="highlight highlight-source-r"><pre><span class="pl-c">#To generate a word cloud from a term-document matrix "tdm"</span>
 library(<span class="pl-smi">wordcloud</span>)
 <span class="pl-smi">m</span> <span class="pl-k">&lt;-</span> as.matrix(<span class="pl-smi">tdm</span>)
 <span class="pl-smi">word.freq</span> <span class="pl-k">&lt;-</span> sort(rowSums(<span class="pl-smi">m</span>), <span class="pl-v">decreasing</span> <span class="pl-k">=</span> <span class="pl-c1">T</span>)
