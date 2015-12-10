@@ -139,6 +139,9 @@ ggplot(<span class="pl-smi">df</span>, aes(<span class="pl-v">x</span><span clas
 <span class="pl-v">scores</span> <span class="pl-k">=</span> score.sentiment(<span class="pl-smi">df</span><span class="pl-k">$</span><span class="pl-smi">FullText</span>, <span class="pl-smi">pos</span>, <span class="pl-smi">neg</span>, <span class="pl-v">.progress</span><span class="pl-k">=</span><span class="pl-s"><span class="pl-pds">'</span>text<span class="pl-pds">'</span></span>)
 <span class="pl-smi">scores</span><span class="pl-k">$</span><span class="pl-v">very.pos</span> <span class="pl-k">=</span> as.numeric(<span class="pl-smi">scores</span><span class="pl-k">$</span><span class="pl-smi">score</span> <span class="pl-k">&gt;</span><span class="pl-k">=</span> <span class="pl-c1">2</span>)
 <span class="pl-smi">scores</span><span class="pl-k">$</span><span class="pl-v">very.neg</span> <span class="pl-k">=</span> as.numeric(<span class="pl-smi">scores</span><span class="pl-k">$</span><span class="pl-smi">score</span> <span class="pl-k">&lt;</span><span class="pl-k">=</span> <span class="pl-k">-</span><span class="pl-c1">2</span>)
+<span class="pl-c"># set column names and colors</span>
+<span class="pl-v">cols</span> <span class="pl-k">=</span> c(<span class="pl-s"><span class="pl-pds">"</span>#7CAE00<span class="pl-pds">"</span></span>, <span class="pl-s"><span class="pl-pds">"</span>#00BFC4<span class="pl-pds">"</span></span>)
+names(<span class="pl-smi">cols</span>) <span class="pl-k">=</span> c(<span class="pl-s"><span class="pl-pds">"</span>twitter<span class="pl-pds">"</span></span>, <span class="pl-s"><span class="pl-pds">"</span>facebook<span class="pl-pds">"</span></span>)
 library(<span class="pl-smi">ggplot2</span>)
 ggplot(<span class="pl-smi">scores</span>, aes(<span class="pl-v">x</span><span class="pl-k">=</span><span class="pl-smi">mediatype</span>, <span class="pl-v">y</span><span class="pl-k">=</span><span class="pl-smi">score</span>, <span class="pl-v">group</span><span class="pl-k">=</span><span class="pl-smi">mediatype</span>)) <span class="pl-k">+</span>
   geom_boxplot(aes(<span class="pl-v">fill</span><span class="pl-k">=</span><span class="pl-smi">mediatype</span>)) <span class="pl-k">+</span>
@@ -153,7 +156,7 @@ ggplot(<span class="pl-smi">scores</span>, aes(<span class="pl-v">x</span><span 
 <h2>
 <a id="approach-1" class="anchor" href="#approach-1" aria-hidden="true"><span class="octicon octicon-link"></span></a>Approach</h2>
 
-<p>describe approach to this question in more detail</p>
+<p>In order to answer this question, we first generated a word cloud and term-frequency plot for the entire dataset. Comparison of the word clouds for the industry and the individual banks allowed us to note topics both common across the industry and unique to each bank. Sentiment analysis reveals how consumers feel about banking in general as well as the individual banks. We generated global sentiment scores which represent the positivity rating of the social media posts toward each bank. Box plots and bar graphs of sentiment further break down public opinions of banking by social media platform. They also show the average sentiment score of a single tweet or Facebook post, i.e. the average number of positive words - negative words per post.</p>
 
 <h2>
 <a id="industry" class="anchor" href="#industry" aria-hidden="true"><span class="octicon octicon-link"></span></a>Industry</h2>
@@ -235,11 +238,20 @@ ggplot(<span class="pl-smi">scores</span>, aes(<span class="pl-v">x</span><span 
 
 <p>The social conversation around banking seems to be somewhat positive in general. BankA seems to be the most popular bank in terms of positive criticism, though BankD is mentioned the most on social media. With the exception of BankA, all of the individual banks fall below the industry sentiment score and have scores very close to neutral. However, the data might represent a deflated view of consumer's opinions on these banks because in some of the posts, clients are reaching out to the banks for help with specific problems. For example, BankB's help Twitter handle was frequently used but removed from the graphs because it was not considered a topic.  </p>
 
-<p>Let's look more closely at the results for sentiment analysis.
-<img src="http://i.imgur.com/SMGu2Aq.png?1" alt="Boxplot"> | <img src="http://i.imgur.com/cYyBAft.png?1" alt="Bar graph">
--------------------------------------------- | ----------------------------------------------</p>
+<p>Let's look more closely at the results for sentiment analysis.  </p>
 
-<p>These graphs represent the average sentiment score for an individual tweet or Facebook post. Scores for individual posts are overlaid in gray on the boxplots. The interquartile ranges for both Twitter and Facebook rest slightly about zero, indicating that most posts are very slightly positive in sentiment. Because posts on Twitter are limited to 140 characters and posts on Facebook are often just as short, it is unusual for a single post to have more than 10 positive or negative words. The average score for a single post is less than 1 for both Twitter and Facebook, but the scores are slightly positive. Facebook users also use more positive words on average than Twitter users. These two statements set a trend for the individual banks as well. Tweets may be more negative than Facebook posts because people may prefer to contact customer service through Twitter, because the slightly younger Twitter userbase is less satisfied with banking, or because the very casual Twitter environment lends itself more easily to the use of expletives (<a href="http://wiki.knoesis.org/index.php/Cursing_in_English_on_Twitter">Wright State University</a>). </p>
+<table>
+<thead>
+<tr>
+<th><img src="http://i.imgur.com/SMGu2Aq.png?1" alt="Boxplot"></th>
+<th><img src="http://i.imgur.com/cYyBAft.png?1" alt="Bar graph"></th>
+</tr>
+</thead>
+<tbody>
+</tbody>
+</table>
+
+<p>These graphs represent the average sentiment score for an individual tweet or Facebook post. Scores for individual posts are overlaid in gray on the box plots. The interquartile ranges for both Twitter and Facebook rest slightly about zero, indicating that most posts are very slightly positive in sentiment. Because posts on Twitter are limited to 140 characters and posts on Facebook are often just as short, it is unusual for a single post to have more than 10 positive or negative words. The average score for a single post is less than 1 for both Twitter and Facebook, but the scores are slightly positive. Facebook users also use more positive words on average than Twitter users. These two statements set a trend for the individual banks as well. Tweets may be more negative than Facebook posts because people may prefer to contact customer service through Twitter, because the slightly younger Twitter userbase is less satisfied with banking, or because the very casual Twitter environment lends itself more easily to the use of expletives (<a href="http://wiki.knoesis.org/index.php/Cursing_in_English_on_Twitter">Wright State University</a>). </p>
 
 <h2>
 <a id="bank-a-1" class="anchor" href="#bank-a-1" aria-hidden="true"><span class="octicon octicon-link"></span></a>Bank A</h2>
@@ -275,7 +287,7 @@ ggplot(<span class="pl-smi">scores</span>, aes(<span class="pl-v">x</span><span 
 
 <p>Global sentiment score: 55%  </p>
 
-<p>BankB's boxplot for Facebook has a comparatively large interquartile range, which indicates that Facebook users have a more varied range of comments on BankB. Users provided a range of both positive and negative comments, as the interquartile range is centered on a neutral sentiment score. The bar graph shows that despite the range of comments, the average Facebook post was still somewhat positive. In contrast, the boxplot for Twitter has a very small interquartile range that is very slightly positive. BankB's global sentiment score is just above the neutral score, 50%, yet it is much lower than the industry average.</p>
+<p>BankB's box plot for Facebook has a comparatively large interquartile range, which indicates that Facebook users have a more varied range of comments on BankB. Users provided a range of both positive and negative comments, as the interquartile range is centered on a neutral sentiment score. The bar graph shows that despite the range of comments, the average Facebook post was still somewhat positive. In contrast, the box plot for Twitter has a very small interquartile range that is very slightly positive. BankB's global sentiment score is just above the neutral score, 50%, yet it is much lower than the industry average.</p>
 
 <h2>
 <a id="bank-c-1" class="anchor" href="#bank-c-1" aria-hidden="true"><span class="octicon octicon-link"></span></a>Bank C</h2>
@@ -311,12 +323,36 @@ ggplot(<span class="pl-smi">scores</span>, aes(<span class="pl-v">x</span><span 
 
 <p>Global sentiment score: 53%  </p>
 
-<p>Both of BankD's boxplots have very small interquartile ranges and averages very near zero. BankD is unique among the four banks in that its average sentiment score on Twitter is higher than on Facebook. The reason for this is unclear, but the difference between the two social media platforms is slight in all cases. BankD's global sentiment score is almost as low as BankC's, so it is also barely above neutral. Unlike BankC, a large quantity of posts mention BankD, so the sentiment score is as accurate as any of the others. Therefore we may conclude that consumers on Twitter and Facebook are not responding to BankD as well as BankA or banking in general.</p>
+<p>Both of BankD's box plots have very small interquartile ranges and averages very near zero. BankD is unique among the four banks in that its average sentiment score on Twitter is higher than on Facebook. The reason for this is unclear, but the difference between the two social media platforms is slight in all cases. BankD's global sentiment score is almost as low as BankC's, so it is also barely above neutral. Unlike BankC, a large quantity of posts mention BankD, so the sentiment score is as accurate as any of the others. Therefore we may conclude that consumers on Twitter and Facebook are not responding to BankD as well as BankA or banking in general.</p>
 
 <h2>
 <a id="methods" class="anchor" href="#methods" aria-hidden="true"><span class="octicon octicon-link"></span></a>Methods</h2>
 
-<p>sa (scores)</p>
+<p>The sentiment analysis again uses score.sentiment, which can be found at the bottom of this webpage.</p>
+
+<div class="highlight highlight-source-r"><pre><span class="pl-c">#To generate a global sentiment score from a dataframe "df" containing consumer comments under the column "FullText"</span>
+<span class="pl-v">scores</span> <span class="pl-k">=</span> score.sentiment(<span class="pl-smi">df</span><span class="pl-k">$</span><span class="pl-smi">FullText</span>, <span class="pl-smi">pos</span>, <span class="pl-smi">neg</span>, <span class="pl-v">.progress</span><span class="pl-k">=</span><span class="pl-s"><span class="pl-pds">'</span>text<span class="pl-pds">'</span></span>)
+<span class="pl-smi">scores</span><span class="pl-k">$</span><span class="pl-v">very.pos</span> <span class="pl-k">=</span> as.numeric(<span class="pl-smi">scores</span><span class="pl-k">$</span><span class="pl-smi">score</span> <span class="pl-k">&gt;</span><span class="pl-k">=</span> <span class="pl-c1">2</span>)
+<span class="pl-smi">scores</span><span class="pl-k">$</span><span class="pl-v">very.neg</span> <span class="pl-k">=</span> as.numeric(<span class="pl-smi">scores</span><span class="pl-k">$</span><span class="pl-smi">score</span> <span class="pl-k">&lt;</span><span class="pl-k">=</span> <span class="pl-k">-</span><span class="pl-c1">2</span>)
+<span class="pl-c"># how many very positive comments and very negative comments</span>
+<span class="pl-v">numpos</span> <span class="pl-k">=</span> sum(<span class="pl-smi">scores</span><span class="pl-k">$</span><span class="pl-smi">very.pos</span>)
+<span class="pl-v">numneg</span> <span class="pl-k">=</span> sum(<span class="pl-smi">scores</span><span class="pl-k">$</span><span class="pl-smi">very.neg</span>)
+<span class="pl-c"># creation of global score</span>
+<span class="pl-v">global_score</span> <span class="pl-k">=</span> round( <span class="pl-c1">100</span> <span class="pl-k">*</span> <span class="pl-smi">numpos</span> <span class="pl-k">/</span> (<span class="pl-smi">numpos</span> <span class="pl-k">+</span> <span class="pl-smi">numneg</span>) )
+<span class="pl-smi">scores</span><span class="pl-k">$</span><span class="pl-v">mediatype</span> <span class="pl-k">=</span> <span class="pl-smi">df.sentiment</span><span class="pl-k">$</span><span class="pl-smi">MediaType</span></pre></div>
+
+<div class="highlight highlight-source-r"><pre><span class="pl-c">#To create a bar graph of average sentiment scores using the dataframe "scores" created above</span>
+<span class="pl-c"># set column names and colors</span>
+<span class="pl-v">cols</span> <span class="pl-k">=</span> c(<span class="pl-s"><span class="pl-pds">"</span>#7CAE00<span class="pl-pds">"</span></span>, <span class="pl-s"><span class="pl-pds">"</span>#00BFC4<span class="pl-pds">"</span></span>)
+names(<span class="pl-smi">cols</span>) <span class="pl-k">=</span> c(<span class="pl-s"><span class="pl-pds">"</span>twitter<span class="pl-pds">"</span></span>, <span class="pl-s"><span class="pl-pds">"</span>facebook<span class="pl-pds">"</span></span>)
+<span class="pl-v">meanscore</span> <span class="pl-k">=</span> tapply(<span class="pl-smi">scores</span><span class="pl-k">$</span><span class="pl-smi">score</span>, <span class="pl-smi">scores</span><span class="pl-k">$</span><span class="pl-smi">mediatype</span>, <span class="pl-smi">mean</span>)
+<span class="pl-v">df.plot</span> <span class="pl-k">=</span> <span class="pl-k">data.frame</span>(<span class="pl-v">mediatype</span><span class="pl-k">=</span>names(<span class="pl-smi">meanscore</span>), <span class="pl-v">meanscore</span><span class="pl-k">=</span><span class="pl-smi">meanscore</span>)
+<span class="pl-smi">df.plot</span><span class="pl-k">$</span><span class="pl-smi">mediatypes</span> <span class="pl-k">&lt;-</span> reorder(<span class="pl-smi">df.plot</span><span class="pl-k">$</span><span class="pl-smi">mediatype</span>, <span class="pl-smi">df.plot</span><span class="pl-k">$</span><span class="pl-smi">meanscore</span>)
+ggplot(<span class="pl-smi">df.plot</span>, aes(<span class="pl-v">x</span> <span class="pl-k">=</span> <span class="pl-k">factor</span>(<span class="pl-smi">mediatypes</span>), <span class="pl-v">y</span> <span class="pl-k">=</span> <span class="pl-smi">meanscore</span>, <span class="pl-v">fill</span><span class="pl-k">=</span><span class="pl-smi">mediatypes</span>)) <span class="pl-k">+</span>
+  geom_bar(<span class="pl-v">stat</span><span class="pl-k">=</span><span class="pl-s"><span class="pl-pds">"</span>identity<span class="pl-pds">"</span></span>) <span class="pl-k">+</span>
+  scale_fill_manual(<span class="pl-v">values</span><span class="pl-k">=</span><span class="pl-smi">cols</span>[order(<span class="pl-smi">df.plot</span><span class="pl-k">$</span><span class="pl-smi">meanscore</span>)]) <span class="pl-k">+</span>
+  labs(<span class="pl-v">title</span> <span class="pl-k">=</span> <span class="pl-s"><span class="pl-pds">"</span>Average Sentiment Score<span class="pl-pds">"</span></span>) <span class="pl-k">+</span> 
+  xlab(<span class="pl-s"><span class="pl-pds">'</span>Media Type<span class="pl-pds">'</span></span>) <span class="pl-k">+</span> ylab(<span class="pl-s"><span class="pl-pds">'</span>Average Score<span class="pl-pds">'</span></span>)</pre></div>
 
 <h1>
 <a id="custom-functions" class="anchor" href="#custom-functions" aria-hidden="true"><span class="octicon octicon-link"></span></a>Custom Functions</h1>
@@ -360,8 +396,8 @@ ggplot(<span class="pl-smi">scores</span>, aes(<span class="pl-v">x</span><span 
 <a id="authors-and-contributors" class="anchor" href="#authors-and-contributors" aria-hidden="true"><span class="octicon octicon-link"></span></a>Authors and Contributors</h2>
 
 <p>description of collaboration
-\<a href="https://github.com/nashkenziem" class="user-mention">@nashkenziem</a>
-\<a href="https://github.com/emilyberich" class="user-mention">@emilyberich</a></p>
+<a href="https://github.com/nashkenziem" class="user-mention">@nashkenziem</a>
+<a href="https://github.com/emilyberich" class="user-mention">@emilyberich</a></p>
 
 <h3>
 <a id="support-or-contact" class="anchor" href="#support-or-contact" aria-hidden="true"><span class="octicon octicon-link"></span></a>Support or Contact</h3>
