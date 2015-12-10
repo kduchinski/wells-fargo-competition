@@ -166,17 +166,41 @@ ggplot(<span class="pl-smi">scores</span>, aes(<span class="pl-v">x</span><span 
 </tr>
 </thead>
 <tbody>
-<tr>
-<td align="center"><img src="http://i.imgur.com/SMGu2Aq.png?1" alt="Boxplot"></td>
-<td align="center"><img src="http://i.imgur.com/cYyBAft.png?1" alt="Bar graph"></td>
-</tr>
 </tbody>
 </table>
 
 <p>The terms in the word cloud appeared in the data at least 2500 times, and those in the term-frequency plot appeared at least 5000 times.  </p>
 
-<p>discuss common terms
-discuss sentiment scores for each bank vs. industry  </p>
+<p>BankD is the single bank most often mentioned in the sample of tweets and Facebook posts, and BankC is the least often mentioned. Financial terms that commonly surface in discussion of each bank and the banking industry are: business, service, card, check, credit, custom, account, and money. Topics unique to each bank are tabulated below.  </p>
+
+<table>
+<thead>
+<tr>
+<th align="center">Bank</th>
+<th align="center">Unique Topics</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="center">BankA</td>
+<td align="center">families, home, donation</td>
+</tr>
+<tr>
+<td align="center">BankB</td>
+<td align="center">Chicago, corporate, settlement</td>
+</tr>
+<tr>
+<td align="center">BankC</td>
+<td align="center">invest, analyst, oil</td>
+</tr>
+<tr>
+<td align="center">BankD</td>
+<td align="center">program, mission, vote</td>
+</tr>
+</tbody>
+</table>
+
+<p>Global sentiment scores generated from our sentiment analyses are represented as a percentage of positive posts out of positive and negative posts. A positive post must use at least two more positive words than negative words. This figure does not account for posts that have neutral sentiments, but 50% represents a neutral score. Global sentiment scores for the industry and each bank are tabulated below.  </p>
 
 <table>
 <thead>
@@ -208,6 +232,14 @@ discuss sentiment scores for each bank vs. industry  </p>
 </tr>
 </tbody>
 </table>
+
+<p>The social conversation around banking seems to be somewhat positive in general. BankA seems to be the most popular bank in terms of positive criticism, though BankD is mentioned the most on social media. With the exception of BankA, all of the individual banks fall below the industry sentiment score and have scores very close to neutral. However, the data might represent a deflated view of consumer's opinions on these banks because in some of the posts, clients are reaching out to the banks for help with specific problems. For example, BankB's help Twitter handle was frequently used but removed from the graphs because it was not considered a topic.  </p>
+
+<p>Let's look more closely at the results for sentiment analysis.
+<img src="http://i.imgur.com/SMGu2Aq.png?1" alt="Boxplot"> | <img src="http://i.imgur.com/cYyBAft.png?1" alt="Bar graph">
+-------------------------------------------- | ----------------------------------------------</p>
+
+<p>These graphs represent the average sentiment score for an individual tweet or Facebook post. Scores for individual posts are overlaid in gray on the boxplots. The interquartile ranges for both Twitter and Facebook rest slightly about zero, indicating that most posts are very slightly positive in sentiment. Because posts on Twitter are limited to 140 characters and posts on Facebook are often just as short, it is unusual for a single post to have more than 10 positive or negative words. The average score for a single post is less than 1 for both Twitter and Facebook, but the scores are slightly positive. Facebook users also use more positive words on average than Twitter users. These two statements set a trend for the individual banks as well. Tweets may be more negative than Facebook posts because people may prefer to contact customer service through Twitter, because the slightly younger Twitter userbase is less satisfied with banking, or because the very casual Twitter environment lends itself more easily to the use of expletives (<a href="http://wiki.knoesis.org/index.php/Cursing_in_English_on_Twitter">Wright State University</a>). </p>
 
 <h2>
 <a id="bank-a-1" class="anchor" href="#bank-a-1" aria-hidden="true"><span class="octicon octicon-link"></span></a>Bank A</h2>
