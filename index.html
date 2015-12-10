@@ -97,7 +97,7 @@ Social media users often compare BankB to each of the other three banks, though 
 
 <p>These graphs depict the most frequently-used words in tweets and Facebook posts about BankB. All of the words in the word cloud appear at least 400 times, and all of the words in the term-frequency plot appear at least 1000 times. The minimum frequency for BankC's word cloud was lowered because consumers mention each of the other three banks about twice as much as BankC.  </p>
 
-<p>Far fewer posts in the dataset mention BankC than any of the other three banks. BankC may have less account holders than the other banks, or BankC may be more popular among clients over the age of 50, fewer of whom use social networking websites (<a href="http://www.pewinternet.org/fact-sheets/social-networking-fact-sheet/">Pew Research Center</a>. The financial terms we will analysis for sentiment for BankC are <strong>card</strong>, <strong>credit</strong>, and <strong>rate</strong>.</p>
+<p>Far fewer posts in the dataset mention BankC than any of the other three banks. BankC may have less account holders than the other banks, or BankC may be more popular among clients over the age of 50, fewer of whom use social networking websites (<a href="http://www.pewinternet.org/fact-sheets/social-networking-fact-sheet/">Pew Research Center</a>). The financial terms we will analysis for sentiment for BankC are <strong>card</strong>, <strong>credit</strong>, and <strong>rate</strong>.</p>
 
 <h2>
 <a id="bank-d" class="anchor" href="#bank-d" aria-hidden="true"><span class="octicon octicon-link"></span></a>Bank D</h2>
@@ -160,19 +160,74 @@ ggplot(<span class="pl-smi">scores</span>, aes(<span class="pl-v">x</span><span 
 
 <p>wordcloud, tf plot, sa
 discuss common terms
-discuss sentiment scores for each bank vs. industry</p>
+discuss sentiment scores for each bank vs. industry
+Bank     | Sentiment Score
+-------- | ---------------
+Industry | 62%
+BankA    | 65%
+BankB    | 55%
+BankC    | 52%
+BankD    | 53%</p>
 
 <h2>
 <a id="bank-a-1" class="anchor" href="#bank-a-1" aria-hidden="true"><span class="octicon octicon-link"></span></a>Bank A</h2>
 
+<table>
+<thead>
+<tr>
+<th><img src="http://i.imgur.com/ATwyvzj.png?1" alt="Bank A Boxplot"></th>
+<th><img src="http://i.imgur.com/yjSNcoF.png?1" alt="Bank A Sentiment Graph"></th>
+</tr>
+</thead>
+<tbody>
+</tbody>
+</table>
+
+<p>Global sentiment score: 65%  </p>
+
+<p>The interquartile ranges for sentiment on both Facebook and Twitter are both completely positive, which suggests that the global sentiment score is positive as well. In fact, BankA not only has the most positive sentiment score of the individual banks but also has a more positive score than the industry. If we consider the industry sentiment score as average, then BankA is the only bank that has an above-average sentiment score. We also see that Facebook has a higher average sentiment score than Twitter, which may be accounted for by the high outliers in the box plot.</p>
+
 <h2>
 <a id="bank-b-1" class="anchor" href="#bank-b-1" aria-hidden="true"><span class="octicon octicon-link"></span></a>Bank B</h2>
+
+<table>
+<thead>
+<tr>
+<th><img src="http://i.imgur.com/sasCiQ3.png?1" alt="Bank B Boxplot"></th>
+<th><img src="http://i.imgur.com/FvaBSpz.png?1" alt="Bank B Sentiment Graph"></th>
+</tr>
+</thead>
+<tbody>
+</tbody>
+</table>
 
 <h2>
 <a id="bank-c-1" class="anchor" href="#bank-c-1" aria-hidden="true"><span class="octicon octicon-link"></span></a>Bank C</h2>
 
+<table>
+<thead>
+<tr>
+<th><img src="http://i.imgur.com/ttCdheJ.png?1" alt="Bank C Boxplot"></th>
+<th><img src="http://i.imgur.com/Twosl3D.png?1" alt="Bank C Sentiment Graph"></th>
+</tr>
+</thead>
+<tbody>
+</tbody>
+</table>
+
 <h2>
 <a id="bank-d-1" class="anchor" href="#bank-d-1" aria-hidden="true"><span class="octicon octicon-link"></span></a>Bank D</h2>
+
+<table>
+<thead>
+<tr>
+<th><img src="http://i.imgur.com/uG3gFJU.png?1" alt="Bank D Boxplot"></th>
+<th><img src="http://i.imgur.com/4apTcbD.png?1" alt="Bank D Sentiment Graph"></th>
+</tr>
+</thead>
+<tbody>
+</tbody>
+</table>
 
 <h2>
 <a id="methods" class="anchor" href="#methods" aria-hidden="true"><span class="octicon octicon-link"></span></a>Methods</h2>
