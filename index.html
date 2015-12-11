@@ -22,7 +22,9 @@
       <h1>
 <a id="introduction" class="anchor" href="#introduction" aria-hidden="true"><span class="octicon octicon-link"></span></a>Introduction</h1>
 
-<p>Businesses want to know what their clients think, but company-conducted surveys are not always effective. On social media, consumers constantly and voluntarily provide feedback on everything from pictures of cats to their local bank. Wells Fargo sponsored a challenge for students at select colleges and universities to "[develop] a repeatable process that identifies, classifies, and extracts the underlying drivers of consumer financial conversations and comments in social media data." Wells Fargo provided a sample of anonymonized posts from the popular social media platforms Twitter and Facebook. The names of the four banks most often mentioned in the sample have been changed to BankA, BankB, BankC, and BankD. We, a team of three students at College of Charleston, created a script that presents the most popular financial topics in word clouds and term-frequency plots and analyzes the sentiment (positivity or negativity) of each post toward banking. Our goal was to discover what topics concern clients of each bank, how they feel about those topics, and their opinions on both their banks of choice and banking in general.</p>
+<p>Businesses want to know what their clients think, but company-conducted surveys are not always effective. On social media, consumers constantly and voluntarily provide feedback on everything from pictures of cats to their local bank. Wells Fargo sponsored a challenge for students at select colleges and universities to "[develop] a repeatable process that identifies, classifies, and extracts the underlying drivers of consumer financial conversations and comments in social media data." Wells Fargo provided a sample of anonymonized posts from the popular social media platforms Twitter and Facebook. The names of the four banks most often mentioned in the sample have been changed to BankA, BankB, BankC, and BankD. We, a team of three students at College of Charleston, created a script that presents the most popular financial topics in word clouds and term-frequency plots and analyzes the sentiment (positivity or negativity) of each post toward banking. Our goal was to discover what topics concern clients of each bank, how they feel about those topics, and their opinions on both their banks of choice and banking in general. Our process is outlined in the flowchart below.  </p>
+
+<p><img src="http://i.imgur.com/0mxaj6f.png" alt="Flowchart"></p>
 
 <h1>
 <a id="what-financial-topics-do-consumers-discuss-on-social-media-and-what-caused-the-consumers-to-post-about-this-topic" class="anchor" href="#what-financial-topics-do-consumers-discuss-on-social-media-and-what-caused-the-consumers-to-post-about-this-topic" aria-hidden="true"><span class="octicon octicon-link"></span></a>"What financial topics do consumers discuss on social media and what caused the consumers to post about this topic?"</h1>
@@ -351,17 +353,6 @@ ggplot(<span class="pl-smi">df.plot</span>, aes(<span class="pl-v">x</span> <spa
   scale_fill_manual(<span class="pl-v">values</span><span class="pl-k">=</span><span class="pl-smi">cols</span>[order(<span class="pl-smi">df.plot</span><span class="pl-k">$</span><span class="pl-smi">meanscore</span>)]) <span class="pl-k">+</span>
   labs(<span class="pl-v">title</span> <span class="pl-k">=</span> <span class="pl-s"><span class="pl-pds">"</span>Average Sentiment Score<span class="pl-pds">"</span></span>) <span class="pl-k">+</span> 
   xlab(<span class="pl-s"><span class="pl-pds">'</span>Media Type<span class="pl-pds">'</span></span>) <span class="pl-k">+</span> ylab(<span class="pl-s"><span class="pl-pds">'</span>Average Score<span class="pl-pds">'</span></span>)</pre></div>
-
-<h1>
-<a id="custom-functions" class="anchor" href="#custom-functions" aria-hidden="true"><span class="octicon octicon-link"></span></a>Custom Functions</h1>
-
-<h3>
-<a id="stemcompletion_mod" class="anchor" href="#stemcompletion_mod" aria-hidden="true"><span class="octicon octicon-link"></span></a>stemCompletion_mod</h3>
-
-<div class="highlight highlight-source-r"><pre><span class="pl-en">stemCompletion_mod</span> <span class="pl-k">&lt;-</span> <span class="pl-k">function</span>(<span class="pl-smi">x</span>,<span class="pl-v">dict</span><span class="pl-k">=</span><span class="pl-smi">dictCorpus</span>) 
-{
-  paste(stemCompletion(unlist(strsplit(as.character(<span class="pl-smi">x</span>),<span class="pl-s"><span class="pl-pds">"</span> <span class="pl-pds">"</span></span>)),<span class="pl-smi">dict</span>, <span class="pl-v">type</span><span class="pl-k">=</span><span class="pl-s"><span class="pl-pds">"</span>longest<span class="pl-pds">"</span></span>),<span class="pl-v">sep</span><span class="pl-k">=</span><span class="pl-s"><span class="pl-pds">"</span> <span class="pl-pds">"</span></span>,<span class="pl-v">collapse</span><span class="pl-k">=</span><span class="pl-s"><span class="pl-pds">"</span> <span class="pl-pds">"</span></span>)
-}</pre></div>
 
 <h3>
 <a id="scoresentiment" class="anchor" href="#scoresentiment" aria-hidden="true"><span class="octicon octicon-link"></span></a>score.sentiment</h3>
